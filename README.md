@@ -25,7 +25,7 @@ The project also has a **React-based frontend** for a complete blogging experien
 - **Java 21**  
 - **Spring Boot**  
 - **Spring Data JPA**  
-- **MySQL**  
+- **MongoDB**  
 - **Maven**  
 - **Docker** (optional containerization)  
 - **Render** (cloud deployment)  
