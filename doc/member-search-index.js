@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.spring.blog","c":"BlogApplication","l":"BlogApplication()","u":"%3Cinit%3E()"},{"p":"com.spring.blog","c":"BlogApplication","l":"getBlog()"},{"p":"com.spring.blog","c":"BlogApplication","l":"main(String[])","u":"main(java.lang.String[])"}];updateSearchResults();
