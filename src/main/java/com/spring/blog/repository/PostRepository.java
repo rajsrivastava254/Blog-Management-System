@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PostRepository extends MongoRepository<Post, Long> {
+public interface PostRepository extends MongoRepository<Post, String> {
     // JpaRepository provides CRUD, pagination, and custom query support by default
 }

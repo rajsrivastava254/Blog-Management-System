@@ -4,6 +4,7 @@ import com.spring.blog.model.User;
 import com.spring.blog.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import java.util.Optional;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-	public Optional<User> getUserById(Long id) {
+	public Optional<User> getUserById(@NonNull String id) {
 		return userRepository.findById(id);
 	}
 
@@ -27,7 +28,7 @@ public class UserService {
 		return userRepository.findAll();
 	}
 
-	public void deleteUser(Long id) {
+	public void deleteUser(@NonNull String id) {
 		userRepository.deleteById(id);
 	}
 }

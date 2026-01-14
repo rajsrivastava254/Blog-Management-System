@@ -4,6 +4,7 @@ import com.spring.blog.model.Post;
 import com.spring.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class PostController {
     private PostService postService;
 
     @PostMapping
-    public ResponseEntity<Post> createPost(@RequestBody Post post) {
+    public ResponseEntity<Post> createPost(@RequestBody @NonNull Post post) {
         Post savedPost = postService.savePost(post);
         return ResponseEntity.status(201).body(savedPost);
     }
@@ -29,15 +30,15 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable String id) {
-        Optional<Post> post = postService.getPostById(Long.valueOf(id));
+    public ResponseEntity<Post> getPostById(@PathVariable @NonNull String id) {
+        Optional<Post> post = postService.getPostById(id);
         return post.map(ResponseEntity::ok)
                    .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable String id, @RequestBody Post postDetails) {
-        Optional<Post> existingPost = postService.getPostById(Long.valueOf(id));
+    public ResponseEntity<Post> updatePost(@PathVariable @NonNull String id, @RequestBody @NonNull Post postDetails) {
+        Optional<Post> existingPost = postService.getPostById(id);
 
         if(existingPost.isPresent()) {
             Post postToUpdate = existingPost.get();
@@ -52,8 +53,8 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePost(@PathVariable String id) {
-        postService.deletePost(Long.valueOf(id));
+    public ResponseEntity<Void> deletePost(@PathVariable @NonNull String id) {
+        postService.deletePost(id);
         return ResponseEntity.noContent().build();
     }
 }

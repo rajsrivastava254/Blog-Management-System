@@ -3,6 +3,7 @@ package com.spring.blog.service;
 import com.spring.blog.model.Post;
 import com.spring.blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class PostService {
     private PostRepository postRepository;
 
     // Create or update a post
-    public Post savePost(Post post) {
+    public Post savePost(@NonNull Post post) {
         return postRepository.save(post);
     }
 
@@ -25,12 +26,12 @@ public class PostService {
     }
 
     // Get a post by ID
-    public Optional<Post> getPostById(Long id) {
+    public Optional<Post> getPostById(@NonNull String id) {
         return postRepository.findById(id);
     }
 
     // Delete a post by ID
-    public void deletePost(Long id) {
+    public void deletePost(@NonNull String id) {
         postRepository.deleteById(id);
     }
 }
