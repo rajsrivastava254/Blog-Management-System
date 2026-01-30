@@ -1,10 +1,14 @@
 package com.spring.blog.controller;
 
 import com.spring.blog.model.Post;
+import com.spring.blog.model.User;
+import com.spring.blog.security.MyUserPrincipal;
 import com.spring.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +23,9 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<Post> createPost(@RequestBody @NonNull Post post) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = ((MyUserPrincipal) auth.getPrincipal()).getUser();
+        post.setUser(currentUser);
         Post savedPost = postService.savePost(post);
         return ResponseEntity.status(201).body(savedPost);
     }

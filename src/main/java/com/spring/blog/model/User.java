@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,18 +18,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "users") // Mongo equivalent of @Entity + @Table
+@Document(collection = "users")
 public class User {
 
 	@Id
-	private String id; // Mongo IDs are usually String/ObjectId
+	private String id;
 
 	private String email;
+
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 
-	private LocalDateTime createdAt = LocalDateTime.now(); // replaces @CreationTimestamp
+	private LocalDateTime createdAt = LocalDateTime.now();
 
-	@DBRef // references posts (you can also embed instead of referencing)
+	@DBRef
 	@JsonIgnore
 	private List<Post> posts = new ArrayList<>();
 }

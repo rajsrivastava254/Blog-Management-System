@@ -1,11 +1,14 @@
 package com.spring.blog.model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,8 +29,9 @@ public class Post {
     @DBRef  // reference to another document instead of @ManyToOne
     private User user;
 
-    @DBRef  // reference list instead of @OneToMany
-    private Set<Comment> comments;
+    @DBRef
+    @JsonManagedReference
+    private Set<Comment> comments = new HashSet<>();
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

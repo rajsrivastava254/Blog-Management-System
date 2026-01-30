@@ -15,9 +15,15 @@ public class CorsConfig {
       @Override
       public void addCorsMappings(@NonNull CorsRegistry registry) {
         registry.addMapping("/**") // Allow all paths
-                .allowedOrigins("https://blog-management-system-frontend-three.vercel.app") // Allow React dev server
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*");
+                .allowedOrigins(
+                    "http://localhost:8081",
+                    "http://localhost:3000",
+                    "https://blog-management-system-frontend-three.vercel.app"
+                )
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
+                .allowedHeaders("*")
+                .allowCredentials(true)
+                .maxAge(3600);
       }
     };
   }
