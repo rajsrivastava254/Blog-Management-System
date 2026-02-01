@@ -9,12 +9,12 @@ The project also has a **React-based frontend** for a complete blogging experien
 ---
 
 ## Features
-- ✍️ Create new blog posts  
+- ✍️ Create new blog posts and add Comments
 - 📖 Read all posts with pagination support  
 - ✏️ Update existing posts  
 - 🗑️ Delete posts by ID  
 - 🌐 RESTful API design  
-- 🗄️ Integration with MySQL database using JPA/Hibernate  
+- 🗄️ Integration with MongoDB database using Mongo/Hibernate  
 - 🎨 React frontend for UI  
 - ☁️ Deployed on **Render** (backend) & **Vercel** (frontend)  
 
